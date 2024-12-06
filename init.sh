@@ -14,7 +14,7 @@ function arch_update() {
 
 function arch_base_packages() {
   echo "Installing base packages..."
-  sudo pacman -S fd-find make tmux awscli curl file wget ranger tree btop tldr atuin eza bat fzf neofetch vim neovim kitty alacritty
+  sudo pacman -Sy fd-find make tmux awscli curl file wget ranger tree btop tldr atuin eza bat fzf neofetch vim neovim kitty alacritty stow
   install_zsh
 }
 
