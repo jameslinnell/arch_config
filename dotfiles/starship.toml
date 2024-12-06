@@ -1,0 +1,242 @@
+palette = "catppuccin_mocha"
+
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
+#
+
+format = """
+$directory
+${custom.terraform}
+$git_branch 
+$git_commit 
+$aws
+""""
+# format = """
+# [](#cba6f7)\
+# $os\
+# $username\
+# [](bg:#DA627D fg:#cba6f7)\
+# $directory\
+# [](fg:#DA627D bg:#a6e3a1)\
+# $git_branch\
+# $git_status\
+# [](fg:#a6e3a1 bg:#86BBD8)\
+# $c\
+# $elixir\
+# $elm\
+# $golang\
+# $gradle\
+# $haskell\
+# $java\
+# $julia\
+# $nodejs\
+# $nim\
+# $rust\
+# $scala\
+# [](fg:#86BBD8 bg:#06969A)\
+# $docker_context\
+# [](fg:#06969A bg:#33658A)\
+# $time\
+# [ ](fg:#33658A)\
+# """
+#
+# # Disable the blank line at the start of the prompt
+# # add_newline = false
+#
+# # You can also replace your username with a neat symbol like   or disable this
+# # and use the os module below
+# [username]
+# show_always = true
+# style_user = "bg:#cba6f7"
+# style_root = "bg:#cba6f7"
+# format = '[$user ]($style)'
+# disabled = false
+#
+# # An alternative to the username module which displays a symbol that
+# # represents the current operating system
+# [os]
+# style = "bg:#cba6f7"
+# disabled = true # Disabled by default
+#
+[directory]
+# style = "bg:#a6e3a1"
+format = " [$path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+#
+[custom.terraform]
+symbol = "🎯 "
+format = "[$symbol$output ]($style)"
+when = ''' test "$HOME/Development/NHS/CPM/connecting-party-manager" = "$PWD" '''
+# when = ''' test "$PWD" == "$HOME/Development/NHS/CPM/connecting-party-manager" || [[ "$PWD" == "$HOME/Development/NHS/CPM/connecting-party-manager/"* ]] '''
+command = 'cat $HOME/Development/NHS/CPM/connecting-party-manager/infrastructure/terraform/per_workspace/.terraform/environment'
+# Git branch module
+[git_branch]
+symbol = "🌿 "  # Symbol before branch name
+format = "[$symbol$branch ]($style)"
+
+#[git_tag]
+#disabled = true
+
+[package]
+disabled = true
+
+[python]
+disabled = true
+
+# [aws]
+# disabled = true
+
+[aws]
+format = 'on [$symbol$profile ]($style) '
+disabled = true
+# style = 'bold blue'
+symbol = '🅰 '
+
+[git_commit]
+disabled = false
+commit_hash_length = 4
+tag_symbol = '🔖 '
+
+[os]
+format = "[ $symbol ]($style)"
+disabled = true
+
+[os.symbols]
+Ubuntu = "🎯 "
+
+[terraform]
+disabled = true
+
+[custom.aws]
+format = 'on [$output]($style)'
+
+
+# detect_files = []  # Disable default file detection
+# detect_folders = []  # Disable default folder detection
+#detect_folders = ['~/Development/NHS/CPM/connecting-party-manager/infrastructure/terraform/per_workspace']
+# Git tag module
+# [git_tag]
+# format = "via [$symbol$tag]($style)"
+# symbol = "🏷️ "
+#
+# # Environment (e.g., Kubernetes context)
+# [kubernetes]
+# format = "on ([$context]($style))"
+# symbol = "⎈ "
+# # Here is how you can shorten some long paths by text replacement
+# # similar to mapped_locations in Oh My Posh:
+# [directory.substitutions]
+# "Documents" = "󰈙 "
+# "Downloads" = " "
+# "Music" = " "
+# "Pictures" = " "
+# # Keep in mind that the order matters. For example:
+# # "Important Documents" = " 󰈙 "
+# # will not be replaced, because "Documents" was already substituted before.
+# # So either put "Important Documents" before "Documents" or use the substituted version:
+# # "Important 󰈙 " = " 󰈙 "
+#
+# [c]
+# symbol = " "
+# style = "bg:#86BBD8"
+# format = '[ $symbol ($version) ]($style)'
+#
+# [docker_context]
+# symbol = " "
+# style = "bg:#06969A"
+# format = '[ $symbol $context ]($style)'
+#
+# [elixir]
+# symbol = " "
+# style = "bg:#86BBD8"
+# format = '[ $symbol ($version) ]($style)'
+#
+# [elm]
+# symbol = " "
+# style = "bg:#86BBD8"
+# format = '[ $symbol ($version) ]($style)'
+#
+# [git_branch]
+# symbol = ""
+# style = "bg:#eba0ac"
+# format = '[ $symbol $branch ]($style)'
+#
+# [git_status]
+# style = "bg:#eba0ac"
+# format = '[$all_status$ahead_behind ]($style)'
+#
+# [golang]
+# symbol = " "
+# style = "bg:#86BBD8"
+# format = '[ $symbol ($version) ]($style)'
+#
+# [gradle]
+# style = "bg:#86BBD8"
+# format = '[ $symbol ($version) ]($style)'
+#
+# [haskell]
+# symbol = " "
+# style = "bg:#86BBD8"
+# format = '[ $symbol ($version) ]($style)'
+#
+# [java]
+# symbol = " "
+# style = "bg:#86BBD8"
+# format = '[ $symbol ($version) ]($style)'
+#
+# [julia]
+# symbol = " "
+# style = "bg:#86BBD8"
+# format = '[ $symbol ($version) ]($style)'
+#
+# [nodejs]
+# symbol = ""
+# style = "bg:#86BBD8"
+# format = '[ $symbol ($version) ]($style)'
+#
+# [nim]
+# symbol = "󰆥 "
+# style = "bg:#86BBD8"
+# format = '[ $symbol ($version) ]($style)'
+#
+# [rust]
+# symbol = ""
+# style = "bg:#86BBD8"
+# format = '[ $symbol ($version) ]($style)'
+#
+# [scala]
+# symbol = " "
+# style = "bg:#86BBD8"
+# format = '[ $symbol ($version) ]($style)'
+#
+# [time]
+# disabled = true
+# time_format = "%R" # Hour:Minute Format
+# style = "bg:#33658A"
+# format = '[ ♥ $time ]($style)'
