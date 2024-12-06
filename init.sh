@@ -1,11 +1,38 @@
 #!/bin/bash
 
-# function install_zsh() {
-#   sudo chsh -s /usr/bin/zsh
-#   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-#   sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="strug"/g' $HOME/.zshrc
-#   echo "ZSH now installed please rerun to carry on"
-# }
+function i3setup() {
+  echo "Setting up i3..."
+  sudo pacman -Sy xorg xorg-xinit i3 polybar feh rofi picom
+  echo "exec i3" >>~/.xinitrc
+  cd ~
+  git clone https://github.com/jameslinnell/dotfiles.git
+  cd ~/dotfiles
+  stow .
+  echo "i3 window manger is now installed. Type 'startx'"
+}
+
+function install_zsh() {
+  echo "Installing zsh..."
+  sudo pacman -S zsh
+  sudo chsh -s $(which zsh)
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  echo "ZSH is now installed"
+}
+
+function install_yay() {
+  echo "Installing YAY package manager..."
+  cd ~/
+  sudo pacman -S --needed base-devel
+  sudo git clone https://aur.archlinux.org/yay.git
+  sudo chown -R "$USER:$USER" yay/
+  cd yay/
+  makepkg -si
+  yay --version
+  echo "YAY is now installed..."
+  echo "Installing Nerd Fonts..."
+  yay -Ss nerd-fonts-cousine
+  echo "Complete"
+}
 
 function arch_update() {
   echo "Updating system..."
@@ -14,8 +41,7 @@ function arch_update() {
 
 function arch_base_packages() {
   echo "Installing base packages..."
-  sudo pacman -Sy fd-find make tmux awscli curl file wget ranger tree btop tldr atuin eza bat fzf neofetch vim neovim kitty alacritty stow
-  install_zsh
+  sudo pacman -S make upower tmux curl file wget starship lazygit ranger yazi tree btop tldr atuin eza bat fzf neofetch vim neovim kitty alacritty stow
 }
 
 function prompt_user() {
@@ -43,3 +69,6 @@ function prompt_user() {
 # Main script execution with prompts
 prompt_user "Would you like to update the system?" arch_update
 prompt_user "Would you like to install base packages?" arch_base_packages
+prompt_user "Would you like to install YAY package manager?" install_yay
+prompt_user "Would you like to install ZSH?" install_zsh
+prompt_user "Would you like to install i3 window manager?" i3setup
