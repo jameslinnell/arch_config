@@ -17,3 +17,7 @@
   - Install
   - Select `no` when prompted to CHROOT
   - type `shutdown -r now`
+- - On reboot select `Boot into existing Arch Linux`
+
+## Configure
+- Login to the terminal using the credentials you setup in the install process
