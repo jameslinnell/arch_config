@@ -24,3 +24,4 @@
 - type `git clone https://github.com/jameslinnell/arch_config.git`
 - `cd arch_config`
 - `./init.sh`
+- When you are prompted with the colourful Oh My ZSH is now installed screen, type `exit` to continue with the installation.
