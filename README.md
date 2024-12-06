@@ -21,3 +21,6 @@
 
 ## Configure
 - Login to the terminal using the credentials you setup in the install process
+- type `git clone https://github.com/jameslinnell/arch_config.git`
+- `cd arch_config`
+- `./init.sh`
