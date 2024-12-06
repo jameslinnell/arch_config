@@ -7,7 +7,21 @@ function i3setup() {
   cd ~
   git clone https://github.com/jameslinnell/dotfiles.git
   cd ~/dotfiles
-  stow .
+  local arg="$1"
+  stow vscode
+  stow tmux
+  stow starship
+  stow rofi
+  stow polybar
+  stow nvim
+  stow lazygit
+  stow kitty
+  if [ -n "$arg" ]; then
+    stow i3-arch-vm
+  else
+    stow i3
+  fi
+  stow zsh
   echo "i3 window manger is now installed. Type 'startx'"
 }
 
@@ -71,4 +85,5 @@ prompt_user "Would you like to update the system?" arch_update
 prompt_user "Would you like to install base packages?" arch_base_packages
 prompt_user "Would you like to install YAY package manager?" install_yay
 prompt_user "Would you like to install ZSH?" install_zsh
-prompt_user "Would you like to install i3 window manager?" i3setup
+prompt_user "Would you like to install i3 window manager to VM? (You will have the opportunity to install for non-VM next)" i3setup "$1"
+prompt_user "Would you like to install i3 window manager to hardware? (If you already installed to VM select no for this option.)" i3setup
